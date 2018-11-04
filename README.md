@@ -33,8 +33,8 @@ file words.txt which is used to continue the training is expected to
 be the same as the one with which the network was trained. If not,
 bad things will happen.
 * g: The script uses the file wrdgen.pt to now output 100 new words
-previously unknown to english-kind. *The file words.txt is also used
-and should be the same as during training. I might fix this later*
+previously unknown to english-kind. **The file words.txt is also used
+and should be the same as during training. I might fix this later**
 An example run is included at the end of this file.
 
 Architecture
