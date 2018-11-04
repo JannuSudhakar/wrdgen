@@ -80,7 +80,9 @@ probabilities of all the letters.
 
 Let us call this fully connected network that does the predictions
 as PRD.
+
     (x[n],m[n]) -PRD-> PD[n]
+    
 which means the nth state vector when input into the PRD outputs
 the probability distribution over all possible letters that can be
 the n^th^ letter in the word.
@@ -93,9 +95,12 @@ vector as follows:
 
 1.The letter is first converted to a onehot vector and concatenated
 with the x of the state vector:
+
     (x[0],m[0]) = (x + one_hot(incoming_letter),m)
+    
 1.Then the state vector is passed through a number of gated units
 (the number was 6 when this was written):
+
     (x[0],m[0]) -GU1-> (x[1],m[1]) -GU2-> (x[2],m[2]) ...-GU6-> (x[6],m[6])
 
 Let us call the above two operations together as one
@@ -110,18 +115,23 @@ Train time:
 At train time we initialize the state vector with zeros and run
 one OU with the 'strt' character, which marks the beginning of the
 word.
+
     (x[0],m[0]) -OU[strt]-> (x[1],m[1])
+    
 At this point we have not yet fed in any information regarding the
 word being trained on, the state vector now when passed through the
 prediction network, should give us a probability distribution over
 all possible letters that can be the first letter of this word.
+
     (x[1],m[1]) -PRD-> PD[1]
+    
 A cross-entropy loss is now taken betwee PD[1] and
 one_hot(actual_first_letter), which is used for backpropagation.
     loss += CrossEntropy(PD[1],one_hot(actual_first_letter))
 
 The next OU is performed with the actual first letter of the word(l1)
 PD[2] is calculated for backpropagation purposes.
+
     (x[1],m[1]) -OU[l1]-> (x[2],m[2])
     (x[2],m[2]) -PRD-> PD[2]
     loss += CrossEntropy(PD[2],one_hot(l2))
@@ -150,10 +160,12 @@ looks for the 'wrdgen.pt' file and loads weights from there.
 It then initializes (x[0],m[0]) to zero vectors.
 Then the following operations are run with l[0] = 'strt' until
 ln == 'end'
+
     (x[n-1],m[n-1]) -OU[l(n-1)]-> (x[n],m[n])
     (x[n],m[n]) -PRD-> PD[n]
     ln = pick(PD[n])
     n++
+    
 the function pick(PD) picks a random letter with each letter's
 probability of being picked being specified by the probability
 distribution PD.
