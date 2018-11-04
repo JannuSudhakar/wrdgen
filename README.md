@@ -96,7 +96,7 @@ with the x of the state vector:
     (x[0],m[0]) = (x + one_hot(incoming_letter),m)
 1.Then the state vector is passed through a number of gated units
 (the number was 6 when this was written):
-    (x[0],m[0]) -GU-> (x[1],m[1]) -GU-> (x[2],m[2]) ...-GU-> (x[6],m[6])
+    (x[0],m[0]) -GU1-> (x[1],m[1]) -GU2-> (x[2],m[2]) ...-GU6-> (x[6],m[6])
 
 Let us call the above two operations together as one
 operational-update (abbreviated OU), keep in mind that to perform
