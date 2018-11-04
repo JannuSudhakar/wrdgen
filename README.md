@@ -127,10 +127,11 @@ all possible letters that can be the first letter of this word.
     
 A cross-entropy loss is now taken betwee PD[1] and
 one_hot(actual_first_letter), which is used for backpropagation.
+
     loss += CrossEntropy(PD[1],one_hot(actual_first_letter))
 
-The next OU is performed with the actual first letter of the word(l1)
-PD[2] is calculated for backpropagation purposes.
+The next OU is performed with the actual first letter of the word(l1).
+ PD[2] is calculated for backpropagation purposes.
 
     (x[1],m[1]) -OU[l1]-> (x[2],m[2])
     (x[2],m[2]) -PRD-> PD[2]
