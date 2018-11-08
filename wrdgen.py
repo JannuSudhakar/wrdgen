@@ -175,20 +175,9 @@ if (__name__ == "__main__"):
             t1 = time.time()
             for epoch in range(no_epochs):
                 wrd = words[np.random.randint(len(words))]
-                """pos = np.random.randint(len(wrd))
-                x = wrd[0:pos]
-                if(pos == (len(wrd)-1)):
-                    y = 'end'
-                else: y = wrd[pos + 1]
-
-                h = model(x)
-                loss = model.calculate_loss(h,y,criterion)
-                loss.backward()
-                optimizer.step()
-                """
                 loss = model.learn(wrd,criterion,optimizer)
                 loss_mean  = 0.9*loss_mean + 0.1*loss
-                print("(epoch %d/time: %f)loss: %f; loss-mean: %f ----- %r"%(epoch,time.time()-t1,loss,loss_mean,wrd))
+                print("(epoch %d/time: %f)loss: %f; loss - exponential mean: %f ----- %r"%(epoch,time.time()-t1,loss,loss_mean,wrd))
 
                 optimizer.zero_grad()
 
