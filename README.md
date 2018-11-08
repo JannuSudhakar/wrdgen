@@ -93,12 +93,12 @@ The OU:
 When a new letter is given to the network, it updates its state
 vector as follows:
 
-1.The letter is first converted to a onehot vector and concatenated
+The letter is first converted to a onehot vector and concatenated
 with the x of the state vector:
 
     (x[0],m[0]) = (x + one_hot(incoming_letter),m)
     
-1.Then the state vector is passed through a number of gated units
+Then the state vector is passed through a number of gated units
 (the number was 6 when this was written):
 
     (x[0],m[0]) -GU1-> (x[1],m[1]) -GU2-> (x[2],m[2]) ...-GU6-> (x[6],m[6])
